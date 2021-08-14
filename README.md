@@ -91,16 +91,132 @@ The next group is the same as the first group, allowing the domain to be made up
 ([a-z0-9_\.-]+)
 
 ```
+
+The next group is used to define the domain, which can only contain letters and a dot, and can only be between 2 and 6 characters long.
+
+```
+([a-z\.]{2,6})
+```
+
+And then the final group is just the dollar sign anchor, defining the end of the string.
+
+```
+$/
+```
 ### Bracket Expressions
+The 3 different types of brackets are all responsible for different things.
+
+Parenthesis `()` define different groups within the regex expression.
+
+```
+
+([a-z\.]{2,6})
+```
+
+
+Square brackets `[]` are used to define what type of characters can be matched or unmatched within the string.
+
+```
+
+[a-z\.]
+
+```
+
+Curly brackets `{}` are used to define the number of characters that can be accepted into the string
 
 ### Character Classes
 
+Character classes are used to help determine the differences between different characters, allowing you to find and/or remove any characters. All the character classses as listed below:
+
+* `\s` – space symbols, tabs, newlines.
+* `\S` – all but \s.
+* `\d` – digits.
+* `\D` – non-digits.
+* `\w` – Latin letters, digits, underscore '_'.
+* `\W` – all but \w.
+* `\.` - A dot .  matches any character except a newline.
+
+As shown in the regex example used for the email, we can see that the `\.` character class is used. 
+
+```
+
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+
+```
+
 ### The OR Operator
+OR Operators (Alternation Operator) matches on of a choice of regular expressions: if you put the character(s) representing the alternation operator between any two characters in the regular expression, the result matches the union of the strings that those two characters match.
+
+Examples of OR Operators are as follows:
+
+* `(|)` - matches a string that has any anterior characters followed by the characters on the left or right of the vertical bar
+* `[]` - matches a string that has any anterior characters without any characters within the brackets
+* Examples: 
+```
+x(y|z)  matches a string that has x followed by y or z (and captures y or z)
+x[yz]   matches a string that has x, but without capturing b or c
+```
+The OR operator will match with one out of a selctiong of choices from your regex. 
+
+Examples of OR operators can be seen listed below:
+* `(|)` - matches a string that has any anterior characters followed by the characters on the left or right of the vertical bar
+* `[]` - matches a string that has any anterior characters without any characters within the brackets
+
+```
+
+x(y|z)  matches a string that has x followed by y or z (and captures y or z)
+x[yz]   matches a string that has x, but without capturing y or z
+
+```
 
 ### Flags
+Flags are optional parameters that can be added to the regex, allowing it to search in a different way.
+
+A few examples of flags are listed below: 
+
+* `g` - Makes the regex search for all occurences of the pattern as oppose to just the first one.
+
+* `m` - Multi-line, when enabled the Anchors (^ $) will match the start and end of each line within the string as oppose to the whole string
+
+* `i` - Insensitive, makes the entire expression case-insensitive
+
+* `y` - The sticky flag causes the search to initiate at a set position with the string.
+
 
 ### Character Escapes
 
+When using special characters in regex, there needs to be a way in which you can escape them. 
+
+In order to do this, a `/` is used to escape them.
+
+Shown below is another email regex example, where character escapes have been used 5 times in order to escape the special characters within the expression.
+```
+
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/
+
+```
+
+Below is a list of special characters that can be escaped using the `/`
+
+* `[]` - Square brackets
+
+* `^` - Caret
+
+* `$` - Dollar sign
+
+* `.` - dot
+
+* `|` - Vertical bar
+
+* `?` - Question mark
+
+* `*` - Asterix
+
+* `+` - Plus sign
+
+* `()` - Parenthesis
+
+
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+https://github.com/freddieb12345
